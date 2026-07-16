@@ -1,0 +1,12 @@
+[Unit]
+Description=Send a short ping to start Claude Code 5h window
+Wants=network-online.target
+After=network-online.target time-sync.target
+
+[Service]
+Type=oneshot
+User=reviewflow
+Group=reviewflow
+Environment=HOME=/home/reviewflow
+EnvironmentFile=-/etc/claude-ping.env
+ExecStart=/home/reviewflow/bin/claude-ping.sh

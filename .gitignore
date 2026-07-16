@@ -1,0 +1,5 @@
+# Ne jamais versionner le fichier d'env reel : il contient l'URL de ping
+# Healthchecks, qui permet a quiconque la possede d'etouffer les alertes.
+claude-ping.env
+*.env
+!*.env.example

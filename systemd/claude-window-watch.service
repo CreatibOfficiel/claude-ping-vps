@@ -1,0 +1,12 @@
+[Unit]
+Description=Watchdog : rouvre une fenetre Claude 5h si elle a disparu
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=reviewflow
+Group=reviewflow
+Environment=HOME=/home/reviewflow
+EnvironmentFile=-/etc/claude-ping.env
+ExecStart=/home/reviewflow/bin/claude-window-watch.sh

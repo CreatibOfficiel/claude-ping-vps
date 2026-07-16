@@ -1,0 +1,19 @@
+[Unit]
+Description=Trigger Claude Code sessions (4x/jour, cale sur la journee de travail)
+
+[Timer]
+AccuracySec=1s
+Persistent=true
+# Fenetres de 5h calees sur la journee : arrivee 8h, reunion 9h-9h30,
+# dej 12h30-13h30, depart 17h, soirees occasionnelles.
+#   04:30 -> couvre 04:30-09:30 (absorbe arrivee 8h + reunion)
+#   09:30 -> couvre 09:30-14:30 (sortie de reunion -> apres-dej)
+#   14:30 -> couvre 14:30-19:30 (apres-midi + marge apres depart 17h)
+#   19:30 -> couvre 19:30-00:30 (soirees de rush)
+OnCalendar=*-*-* 04:30:30 Europe/Paris
+OnCalendar=*-*-* 09:30:30 Europe/Paris
+OnCalendar=*-*-* 14:30:30 Europe/Paris
+OnCalendar=*-*-* 19:30:30 Europe/Paris
+
+[Install]
+WantedBy=timers.target
